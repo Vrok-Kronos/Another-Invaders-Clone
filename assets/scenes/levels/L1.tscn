@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/scripts/levels/L1.gd" type="Script" id=1]
+[ext_resource path="res://assets/scenes/instances/player/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/scenes/instances/enemies/testEnemy.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 112 )
+
+[node name="level" type="Node2D"]
+script = ExtResource( 1 )
+scene = "gameOver"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 256, 224 )
+color = Color( 0.0862745, 0.0862745, 0.145098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="borderLeft" type="StaticBody2D" parent="." groups=[
+"left",
+]]
+position = Vector2( -16.6, 98.2 )
+collision_mask = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="borderLeft"]
+position = Vector2( 0.629959, 13.8591 )
+shape = SubResource( 1 )
+
+[node name="borderRight" type="StaticBody2D" parent="." groups=[
+"right",
+]]
+position = Vector2( 271, 98.2 )
+collision_mask = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="borderRight"]
+position = Vector2( 0.629959, 13.8591 )
+shape = SubResource( 1 )
+
+[node name="player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 127.961, 217.01 )
+
+[node name="testEnemy" parent="." instance=ExtResource( 4 )]
+position = Vector2( 129.218, 74.9931 )
+
+[node name="testEnemy2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 159.07, 75.4135 )
+health = 1
+
+[node name="testEnemy3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 190.535, 75.4135 )
+health = 2
+
+[node name="laserContainer" type="Node2D" parent="."]
