@@ -7,15 +7,26 @@ export (String, "L1", "L2", "L3") var level = "L1"
 
 onready var highScoreLabel = \
 "mainMarginContainer/mainVBoxContainer/scoreHBoxContainer/scoreVBoxContainer/highScoreLabel"
+onready var scoreLabel = \
+"mainMarginContainer/mainVBoxContainer/scoreHBoxContainer/scoreVBoxContainer/scoreLabel"
+
 
 func _ready():
+	if globals.score > globals.highScore:
+		globals.highScore = globals.score
+		
 	get_node(highScoreLabel).text = str("highscore: ", globals.highScore).pad_zeros(5)
+	get_node(scoreLabel).text = str("score: ", globals.score).pad_zeros(5)
 
 
 func _process(_delta):
 	if Input.is_action_just_pressed("start_btn"):
+		
+		globals.score = 00000
+		
 		if sceneDir == "menus":
 			_changeScene(sceneDir, scene)
+			
 		elif sceneDir == "levels":
 			_changeScene(sceneDir, level)
 

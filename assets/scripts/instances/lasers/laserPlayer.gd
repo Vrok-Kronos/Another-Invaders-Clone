@@ -21,5 +21,7 @@ func _physics_process(delta):
 		else:
 			if velocity.get_collider().health < 1:
 				velocity.get_collider().queue_free()
+			if velocity.get_collider().get("score"):
+				globals.score += velocity.get_collider().get("score")
 			
 		queue_free()
